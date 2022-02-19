@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+main(){
+    int a , b ,i,j,k ,l; 
+    scanf("%d %d" , &a  , &b) ; 
+    int M[a+1][b+1] ; 
+    memset(M , 0 , sizeof(M)) ; 
+    for( i=1 ; i<=a ; i++){
+        for(j = 1 ; j<=b ; j++){
+            if(j==1) M[i][j] = i ; 
+            if(j>1){
+                k = M[i][j-1] ; 
+                if(k<b){
+                    k++ ; 
+                    M[i][j] = k ; 
+                } else if(k>=b){
+                    k-- ; 
+                    for(l=j ; l<=b ; l++){
+                        M[i][l] = k ; 
+                        k-- ; 
+                    }
+                    break ; 
+                }
+                
+            }
+        }
+    }
+
+    for(i=1 ; i<=a ; i++){
+            for(j=1 ; j<=b ; j++) printf("%d" , M[i][j] ) ; 
+            printf("\n") ; 
+    }
+}
